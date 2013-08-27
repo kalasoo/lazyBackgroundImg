@@ -12,10 +12,40 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    -webkit-transition: background-image 0.5s ease-in-out;
+    -moz-transition: background-image 0.5s ease-in-out;
+    -o-transition: background-image 0.5s ease-in-out;
+    transition: background-image 0.5s ease-in-out;
   }
   </style>
 </head>
 <body>
+  <select class="select-background">
+    <option value="b">Background</option>
+    <option value="b-p">Progressive Background</option>
+    <option value="f">Flower</option>
+    <option value="f-p">Progressive Flower</option>
+  </select>
 
+<script src="jquery.js"></script>
+<script>
+  (function($) {
+    var html = $('html')
+    $('.select-background').change(function() {
+      var option = $('.select-background option:selected').attr('value');
+      var img = '';
+      if (option == 'b') {
+        img = 'background.jpg'
+      } else if (option == 'b-p') {
+        img = 'background-progressive.jpg'
+      } else if (option == 'f') {
+        img = 'flower.jpg'
+      } else if (option == 'f-p') {
+        img = 'flower-progressive.jpg'
+      }
+      html.css('background-image', 'url(' + img + ')')
+    })
+  })(jQuery);
+</script>
 </body>
 </html>
