@@ -7,7 +7,7 @@
     margin: 0px; padding: 0px;
   }
   html { 
-    background: url(flower-progressive.jpg) no-repeat center center fixed; 
+    background: no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -17,17 +17,45 @@
     -o-transition: background-image 0.5s ease-in-out;
     transition: background-image 0.5s ease-in-out;
   }
+  .center {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  article {
+    margin: 50px auto 500px;
+    width: 500px;
+    text-align: center;
+  }
+  article img {
+    width: inherit;
+  }
   </style>
 </head>
 <body>
   <select class="select-background">
+    <option value="n">No</option>
     <option value="b">Background</option>
     <option value="b-p">Progressive Background</option>
     <option value="f">Flower</option>
     <option value="f-p">Progressive Flower</option>
   </select>
+  <section class="center">
+    <article>
+      <img src="images/dark-texture.png" data-original="images/bg0.jpg" class="lazy">
+    </article>
+    <article>
+      <img src="images/gray-texture.png" data-original="images/bg1.jpg" class="lazy">
+    </article>
+    <article>
+      <img src="images/dark-texture.png" data-original="images/bg2.jpg" class="lazy">
+    </article>
+    <article>
+      <img src="images/gray-texture.png" data-original="images/bg3.jpg" class="lazy">
+    </article>
+  </section>
 
 <script src="jquery.js"></script>
+<script src="jquery.lazyload.min.js"></script>
 <script>
   (function($) {
     var html = $('html')
@@ -42,9 +70,12 @@
         img = 'flower.jpg'
       } else if (option == 'f-p') {
         img = 'flower-progressive.jpg'
+      } else if (option == 'n') {
+        img = ''
       }
       html.css('background-image', 'url(' + img + ')')
     })
+    $('img.lazy').lazyload();
   })(jQuery);
 </script>
 </body>
