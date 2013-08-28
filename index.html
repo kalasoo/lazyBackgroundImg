@@ -12,6 +12,8 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+  }
+  .fadeIn-background {
     -webkit-transition: background-image 0.5s ease-in-out;
     -moz-transition: background-image 0.5s ease-in-out;
     -o-transition: background-image 0.5s ease-in-out;
@@ -23,8 +25,10 @@
   }
   article {
     margin: 50px auto 500px;
-    width: 500px;
+    width: 800px;
+    height: 640px;
     text-align: center;
+    border-radius: 50%;
   }
   article img {
     width: inherit;
@@ -40,22 +44,32 @@
     <option value="f-p">Progressive Flower</option>
   </select>
   <section class="center">
-    <article>
-      <img src="images/dark-texture.png" data-original="images/bg0.jpg" class="lazy">
+    <article class="lazy" data-background="images/bg0.jpg">
     </article>
-    <article>
-      <img src="images/gray-texture.png" data-original="images/bg1.jpg" class="lazy">
+    <article class="lazy" data-background="images/bg1.jpg">
     </article>
-    <article>
-      <img src="images/dark-texture.png" data-original="images/bg2.jpg" class="lazy">
+    <article class="lazy" data-background="images/bg2.jpg">
     </article>
-    <article>
-      <img src="images/gray-texture.png" data-original="images/bg3.jpg" class="lazy">
+    <article class="lazy" data-background="images/bg3.jpg">
     </article>
+
+
+<!--     <article data-background="images/bg0.jpg">
+      <img  data-original="images/bg0.jpg" class="lazy">
+    </article>
+    <article data-background="images/bg1.jpg">
+      <img data-original="images/bg1.jpg" class="lazy">
+    </article>
+    <article data-background="images/bg2.jpg">
+      <img  data-original="images/bg2.jpg" class="lazy">
+    </article>
+    <article data-background="images/bg3.jpg">
+      <img  data-original="images/bg3.jpg" class="lazy">
+    </article> -->
   </section>
 
 <script src="jquery.js"></script>
-<script src="jquery.lazyload.min.js"></script>
+<script src="jquery.lazyload.background.js"></script>
 <script>
   (function($) {
     var html = $('html')
@@ -75,7 +89,11 @@
       }
       html.css('background-image', 'url(' + img + ')')
     })
-    $('img.lazy').lazyload();
+    $('.lazy').lazyload({
+      effect: 'fadeIn',
+      effect_speed: 1000,
+      threshold: 200
+    });
   })(jQuery);
 </script>
 </body>
