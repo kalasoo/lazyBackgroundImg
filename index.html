@@ -24,11 +24,10 @@
     margin-right: 0px;
   }
   article {
-    margin: 50px auto 500px;
-    width: 800px;
-    height: 640px;
+    margin: 50px auto 600px;
+    width: 600px;
+    height: 400px;
     text-align: center;
-    border-radius: 50%;
   }
   article img {
     width: inherit;
@@ -69,7 +68,7 @@
   </section>
 
 <script src="jquery.js"></script>
-<script src="jquery.lazyload.background.js"></script>
+<script src="lazyload.background.js"></script>
 <script>
   (function($) {
     var html = $('html')
@@ -91,7 +90,7 @@
     })
     $('.lazy').lazyload({
       effect: 'fadeIn',
-      effect_speed: 1000,
+      effect_speed: 5000,
       threshold: 200
     });
   })(jQuery);
