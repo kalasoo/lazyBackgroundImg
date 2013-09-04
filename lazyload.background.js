@@ -104,6 +104,7 @@
                                 $self
                                     .hide()
                                     .attr("src", $self.data(settings.data_attribute))
+                                    .on("load", function() { $self.trigger('afterAppear'); } )
                             }
                             $self[settings.effect](settings.effect_speed);
                             

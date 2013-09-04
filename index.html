@@ -7,17 +7,22 @@
     margin: 0px; padding: 0px;
   }
   html { 
-    background: no-repeat center center fixed; 
+    background: no-repeat center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    -webkit-transition: background-image 0.5s linear;
+    -moz-transition: background-image 0.5s linear;
+    -o-transition: background-image 0.5s linear;
+    transition: background-image 0.5s linear;
   }
   .fadeIn-background {
-    -webkit-transition: background-image 0.5s ease-in-out;
-    -moz-transition: background-image 0.5s ease-in-out;
-    -o-transition: background-image 0.5s ease-in-out;
-    transition: background-image 0.5s ease-in-out;
+    background: no-repeat center; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
   .center {
     margin-left: 0px;
@@ -32,6 +37,14 @@
   article img {
     width: inherit;
   }
+  .lazy {
+    background: no-repeat center; 
+    background-image: url('background.jpg');
+    -webkit-transition: background-image 0.5s linear;
+    -moz-transition: background-image 0.5s linear;
+    -o-transition: background-image 0.5s linear;
+    transition: background-image 0.5s linear;
+  }
   </style>
 </head>
 <body>
@@ -43,13 +56,13 @@
     <option value="f-p">Progressive Flower</option>
   </select>
   <section class="center">
-    <article class="lazy" data-background="images/bg0.jpg">
+    <article class="fadeIn-background lazy" data-background="images/bg0.jpg">
     </article>
-    <article class="lazy" data-background="images/bg1.jpg">
+    <article class="fadeIn-background lazy" data-background="images/bg1.jpg">
     </article>
-    <article class="lazy" data-background="images/bg2.jpg">
+    <article class="fadeIn-background lazy" data-background="images/bg2.jpg">
     </article>
-    <article class="lazy" data-background="images/bg3.jpg">
+    <article class="fadeIn-background lazy" data-background="images/bg3.jpg">
     </article>
 
 
