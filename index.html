@@ -87,12 +87,13 @@
     <article id="high" class="fadeIn-background lazy" data-background="">
       <h1>ORIGINAL</h1>
     </article>
+    <article id="medium" class="fadeIn-background lazy" data-background="">
+      <h1>JPG, QUALITY: 70</h1>
+    </article>
     <article id="low" class="fadeIn-background lazy" data-background="">
-      <h1>JPG, LOW QUALITY</h1>
+      <h1>JPG, QUALITY: 50</h1>
     </article>
-    <article id="blur" class="fadeIn-background lazy" data-background="">
-      <h1>BLURED</h1>
-    </article>
+
   </section>
 
 <script src="js/jquery.js"></script>
@@ -103,8 +104,8 @@
   (function($) {
     var input = $('#cloudinary-link')
     var high = $('#high');
+    var medium = $('#medium');
     var low = $('#low');
-    var blur = $('#blur');
     input.change(function() {
       $this = $(this);
     })
@@ -112,8 +113,8 @@
       $this = $(this);
       input.val($this.text());
       high.css('background-image', 'url(' + input.val() + ')');
+      medium.css('background-image', 'url(' + $.cloudinaryOptimize(input.val(), {quality: 70}) + ')');
       low.css('background-image', 'url(' + $.cloudinaryOptimize(input.val()) + ')');
-      blur.css('background-image', 'url(' + $.cloudinaryOptimize(input.val(), {blur: true}) + ')');
     })
     $('.lazy').lazyload();
   })(jQuery);
