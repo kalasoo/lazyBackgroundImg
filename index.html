@@ -12,50 +12,73 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+  }
+  body, html {height: 100%;}
+  .fadeIn-background {
+    background-image: url('images/transparent.png');
     -webkit-transition: background-image 0.5s linear;
     -moz-transition: background-image 0.5s linear;
     -o-transition: background-image 0.5s linear;
     transition: background-image 0.5s linear;
-  }
-  .fadeIn-background {
-    background: no-repeat center; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
   }
   .center {
     margin-left: 0px;
     margin-right: 0px;
   }
+  header {
+    position: fixed;
+    top: 10px;
+    left: 20px;
+  }
+  section {
+    height: inherit;
+  }
   article {
-    margin: 50px auto 600px;
-    width: 600px;
-    height: 400px;
+    height: inherit;
     text-align: center;
+    background: no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    border-bottom: solid 1px #000;
   }
   article img {
     width: inherit;
   }
-  .lazy {
-    background: no-repeat center; 
-    background-image: url('background.jpg');
-    -webkit-transition: background-image 0.5s linear;
-    -moz-transition: background-image 0.5s linear;
-    -o-transition: background-image 0.5s linear;
-    transition: background-image 0.5s linear;
+  ul {
+    list-style: none;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 5px;
+  }
+  li {
+    cursor: pointer;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -o-transition: 0.2s ease;
+    transition: 0.2s ease;
+  }
+  li:active {
+    padding-left: 5px;
   }
   </style>
 </head>
 <body>
-  <select class="select-background">
-    <option value="n">No</option>
-    <option value="b">Background</option>
-    <option value="b-p">Progressive Background</option>
-    <option value="f">Flower</option>
-    <option value="f-p">Progressive Flower</option>
-  </select>
+  <header>
+    <input type="text" id="cloudinary-link" />
+    <ul>
+      <li>http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,h_1200,w_2000/lajtsox4eq2a0difi5ti.png</li>
+      <li><a href=""></a></li>
+      <li><a href=""></a></li>
+      <li><a href=""></a></li>
+      <li><a href=""></a></li>
+    </ul>
+  </header>
   <section class="center">
+    <article class="fadeIn-background lazy" data-background="http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,h_1200,w_2000,q_50/lajtsox4eq2a0difi5ti.jpg">
+    </article>
+    <article class="fadeIn-background lazy" data-background="http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,h_1200,w_2000/lajtsox4eq2a0difi5ti.png">
+    </article>
     <article class="fadeIn-background lazy" data-background="images/bg0.jpg">
     </article>
     <article class="fadeIn-background lazy" data-background="images/bg1.jpg">
@@ -80,31 +103,18 @@
     </article> -->
   </section>
 
-<script src="jquery.js"></script>
-<script src="lazyload.background.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/lazyload.background.js"></script>
+<script src="js/sticky.js"></script>
 <script>
   (function($) {
     var html = $('html')
-    $('.select-background').change(function() {
-      var option = $('.select-background option:selected').attr('value');
-      var img = '';
-      if (option == 'b') {
-        img = 'background.jpg'
-      } else if (option == 'b-p') {
-        img = 'background-progressive.jpg'
-      } else if (option == 'f') {
-        img = 'flower.jpg'
-      } else if (option == 'f-p') {
-        img = 'flower-progressive.jpg'
-      } else if (option == 'n') {
-        img = ''
-      }
-      html.css('background-image', 'url(' + img + ')')
-    })
+    $('.lazy').cloudinaryOptimize(
+      
+    )
     $('.lazy').lazyload({
       effect: 'fadeIn',
-      effect_speed: 5000,
-      threshold: 200
+      effect_speed: 5000
     });
   })(jQuery);
 </script>
