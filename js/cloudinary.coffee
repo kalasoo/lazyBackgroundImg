@@ -3,18 +3,33 @@ createUrlParser = (url) ->
   parser.href = url
   parser
 
-$.responsiveImage = () ->
-  [1600, 1200]
+$.responsiveWindowImage = () ->
+  width = $(window).width()
+  height = $(window).height()
+  console.log width, height
+  mobile = [640, 960]
+  tablet = [1024, 768]
+  laptop = [1600, 1200]
+  if width <= mobile[0] and height <= mobile[1]
+    console.log('mobile')
+    mobile
+  else if width <= tablet[0] and height <= tablet[1]
+    console.log('tablet')
+    tablet
+  else
+    console.log('laptop')
+    laptop
 
 $.cloudinaryOptimize = (url, options) ->
   parser = createUrlParser(url)
   return parser if parser.hostname isnt 'res.cloudinary.com'
 
-  [width_limit, height_limit] = $.responsiveImage()
+  [width_limit, height_limit] = $.responsiveWindowImage()
   settings = 
+    crop: true
     width: width_limit
     height: height_limit
-    quality: 50
+    quality: 70
     blur: false
   $.extend settings, options
 
@@ -26,7 +41,7 @@ $.cloudinaryOptimize = (url, options) ->
   path_elements[5] = image_link.join('.')
 
   #change size and quality
-  image_settings = ['c_limit', 'w_' + settings.width, 'h_' + settings.height, 'q_' + settings.quality ]
+  image_settings = ['c_fill', 'w_' + settings.width, 'h_' + settings.height, 'q_' + settings.quality ]
   image_settings.push( 'e_blur') if settings.blur
   path_elements[4] = image_settings.join(',')
 

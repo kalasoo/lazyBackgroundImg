@@ -49,7 +49,8 @@
   }
   article h1 {
     color: white;
-    padding-top: 20%;
+    position: relative;
+    top: 50%;
   }
   ul {
     list-style: none;
@@ -80,6 +81,7 @@
       <li>http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,h_1200,w_1600/oausff6li2mbfhanpjxy.jpg</li>
       <li>http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,h_1200,w_1600/vdbsjkxwr7ftbmwizbjx.png</li>
       <li>http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,h_1200,w_1600/xl7evdrnqrwgrwhlvvp5.png</li>
+      <li>http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,h_1200,w_1600/ul0cta3e7dm9x2qv7dte.jpg</li>
       <li></li>
     </ul>
   </header>
@@ -89,6 +91,9 @@
     </article>
     <article id="medium" class="fadeIn-background lazy" data-background="">
       <h1>JPG, QUALITY: 70</h1>
+    </article>
+    <article id="scale" class="fadeIn-background lazy" data-background="">
+      <h1>JPG, SCALED</h1>
     </article>
     <article id="low" class="fadeIn-background lazy" data-background="">
       <h1>JPG, QUALITY: 50</h1>
@@ -105,6 +110,7 @@
     var input = $('#cloudinary-link')
     var high = $('#high');
     var medium = $('#medium');
+    var scale = $('#scale');
     var low = $('#low');
     input.change(function() {
       $this = $(this);
@@ -113,8 +119,9 @@
       $this = $(this);
       input.val($this.text());
       high.css('background-image', 'url(' + input.val() + ')');
-      medium.css('background-image', 'url(' + $.cloudinaryOptimize(input.val(), {quality: 70}) + ')');
-      low.css('background-image', 'url(' + $.cloudinaryOptimize(input.val()) + ')');
+      medium.css('background-image', 'url(' + $.cloudinaryOptimize(input.val(), {quality: 70, width: 1600, height: 1200}) + ')');
+      scale.css('background-image', 'url(' + $.cloudinaryOptimize(input.val(), {quality: 90}) + ')');
+      low.css('background-image', 'url(' + $.cloudinaryOptimize(input.val(), {quality: 50}) + ')');
     })
     $('.lazy').lazyload();
   })(jQuery);

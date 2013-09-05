@@ -9,8 +9,24 @@
     return parser;
   };
 
-  $.responsiveImage = function() {
-    return [1600, 1200];
+  $.responsiveWindowImage = function() {
+    var height, laptop, mobile, tablet, width;
+    width = $(window).width();
+    height = $(window).height();
+    console.log(width, height);
+    mobile = [640, 960];
+    tablet = [1024, 768];
+    laptop = [1600, 1200];
+    if (width <= mobile[0] && height <= mobile[1]) {
+      console.log('mobile');
+      return mobile;
+    } else if (width <= tablet[0] && height <= tablet[1]) {
+      console.log('tablet');
+      return tablet;
+    } else {
+      console.log('laptop');
+      return laptop;
+    }
   };
 
   $.cloudinaryOptimize = function(url, options) {
@@ -19,11 +35,12 @@
     if (parser.hostname !== 'res.cloudinary.com') {
       return parser;
     }
-    _ref = $.responsiveImage(), width_limit = _ref[0], height_limit = _ref[1];
+    _ref = $.responsiveWindowImage(), width_limit = _ref[0], height_limit = _ref[1];
     settings = {
+      crop: true,
       width: width_limit,
       height: height_limit,
-      quality: 50,
+      quality: 70,
       blur: false
     };
     $.extend(settings, options);
@@ -33,7 +50,7 @@
       image_link[1] = 'jpg';
     }
     path_elements[5] = image_link.join('.');
-    image_settings = ['c_limit', 'w_' + settings.width, 'h_' + settings.height, 'q_' + settings.quality];
+    image_settings = ['c_fill', 'w_' + settings.width, 'h_' + settings.height, 'q_' + settings.quality];
     if (settings.blur) {
       image_settings.push('e_blur');
     }
