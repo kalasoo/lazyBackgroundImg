@@ -41,10 +41,15 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    box-sizing: border-box;
     border-bottom: solid 1px #000;
   }
   article img {
     width: inherit;
+  }
+  article h1 {
+    color: white;
+    padding-top: 20%;
   }
   ul {
     list-style: none;
@@ -61,61 +66,56 @@
   li:active {
     padding-left: 5px;
   }
+  input[type='text'] {
+    width: 100%;
+  }
   </style>
 </head>
 <body>
   <header>
     <input type="text" id="cloudinary-link" />
     <ul>
-      <li>http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,h_1200,w_2000/lajtsox4eq2a0difi5ti.png</li>
-      <li><a href=""></a></li>
-      <li><a href=""></a></li>
-      <li><a href=""></a></li>
-      <li><a href=""></a></li>
+      <li>http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,h_1200,w_1600/lajtsox4eq2a0difi5ti.png</li>
+      <li>http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,h_1200,w_1600/c0qk7m4zh3lwdxrnl7hm.jpg</li>
+      <li>http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,h_1200,w_1600/oausff6li2mbfhanpjxy.jpg</li>
+      <li>http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,h_1200,w_1600/vdbsjkxwr7ftbmwizbjx.png</li>
+      <li>http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,h_1200,w_1600/xl7evdrnqrwgrwhlvvp5.png</li>
+      <li></li>
     </ul>
   </header>
   <section class="center">
-    <article class="fadeIn-background lazy" data-background="http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,h_1200,w_2000,q_50/lajtsox4eq2a0difi5ti.jpg">
+    <article id="high" class="fadeIn-background lazy" data-background="">
+      <h1>ORIGINAL</h1>
     </article>
-    <article class="fadeIn-background lazy" data-background="http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,h_1200,w_2000/lajtsox4eq2a0difi5ti.png">
+    <article id="low" class="fadeIn-background lazy" data-background="">
+      <h1>JPG, LOW QUALITY</h1>
     </article>
-    <article class="fadeIn-background lazy" data-background="images/bg0.jpg">
+    <article id="blur" class="fadeIn-background lazy" data-background="">
+      <h1>BLURED</h1>
     </article>
-    <article class="fadeIn-background lazy" data-background="images/bg1.jpg">
-    </article>
-    <article class="fadeIn-background lazy" data-background="images/bg2.jpg">
-    </article>
-    <article class="fadeIn-background lazy" data-background="images/bg3.jpg">
-    </article>
-
-
-<!--     <article data-background="images/bg0.jpg">
-      <img  data-original="images/bg0.jpg" class="lazy">
-    </article>
-    <article data-background="images/bg1.jpg">
-      <img data-original="images/bg1.jpg" class="lazy">
-    </article>
-    <article data-background="images/bg2.jpg">
-      <img  data-original="images/bg2.jpg" class="lazy">
-    </article>
-    <article data-background="images/bg3.jpg">
-      <img  data-original="images/bg3.jpg" class="lazy">
-    </article> -->
   </section>
 
 <script src="js/jquery.js"></script>
 <script src="js/lazyload.background.js"></script>
 <script src="js/sticky.js"></script>
+<script src="js/cloudinary.js"></script>
 <script>
   (function($) {
-    var html = $('html')
-    $('.lazy').cloudinaryOptimize(
-      
-    )
-    $('.lazy').lazyload({
-      effect: 'fadeIn',
-      effect_speed: 5000
-    });
+    var input = $('#cloudinary-link')
+    var high = $('#high');
+    var low = $('#low');
+    var blur = $('#blur');
+    input.change(function() {
+      $this = $(this);
+    })
+    $('li').click(function() {
+      $this = $(this);
+      input.val($this.text());
+      high.css('background-image', 'url(' + input.val() + ')');
+      low.css('background-image', 'url(' + $.cloudinaryOptimize(input.val()) + ')');
+      blur.css('background-image', 'url(' + $.cloudinaryOptimize(input.val(), {blur: true}) + ')');
+    })
+    $('.lazy').lazyload();
   })(jQuery);
 </script>
 </body>
