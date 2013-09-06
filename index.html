@@ -45,7 +45,7 @@
     border-bottom: solid 1px #000;
   }
   article img {
-    width: inherit;
+    width: 50%;
   }
   article h1 {
     color: white;
@@ -86,16 +86,20 @@
     </ul>
   </header>
   <section class="center">
-    <article id="high" class="fadeIn-background lazy" data-background="">
+    <!-- <article id="wtf" class="fadeIn-background lazy" data-background="http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,h_1200,w_1600,fl_progressive/lajtsox4eq2a0difi5ti.png">
+      <h1>STATIC</h1>
+    </article> -->
+    <article id="high" class="fadeIn-background lazy">
       <h1>ORIGINAL</h1>
+      <!-- <img class="lazy" data-original="http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,h_1200,w_1600,fl_progressive/lajtsox4eq2a0difi5ti.jpg"> -->
     </article>
-    <article id="medium" class="fadeIn-background lazy" data-background="">
+    <article id="medium" class="fadeIn-background lazy">
       <h1>JPG, QUALITY: 70</h1>
     </article>
-    <article id="scale" class="fadeIn-background lazy" data-background="">
+    <article id="scale" class="fadeIn-background lazy">
       <h1>JPG, SCALED</h1>
     </article>
-    <article id="low" class="fadeIn-background lazy" data-background="">
+    <article id="low" class="fadeIn-background lazy">
       <h1>JPG, QUALITY: 50</h1>
     </article>
 
@@ -123,7 +127,9 @@
       scale.css('background-image', 'url(' + $.cloudinaryOptimize(input.val(), {quality: 90}) + ')');
       low.css('background-image', 'url(' + $.cloudinaryOptimize(input.val(), {quality: 50}) + ')');
     })
-    $('.lazy').lazyload();
+    $('.lazy').lazyload({
+      effect: 'fadeIn'
+    });
   })(jQuery);
 </script>
 </body>

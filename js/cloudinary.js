@@ -37,11 +37,10 @@
     }
     _ref = $.responsiveWindowImage(), width_limit = _ref[0], height_limit = _ref[1];
     settings = {
-      crop: true,
+      progressive: true,
       width: width_limit,
       height: height_limit,
-      quality: 70,
-      blur: false
+      quality: 70
     };
     $.extend(settings, options);
     path_elements = parser.pathname.split('/');
@@ -50,9 +49,9 @@
       image_link[1] = 'jpg';
     }
     path_elements[5] = image_link.join('.');
-    image_settings = ['c_fill', 'w_' + settings.width, 'h_' + settings.height, 'q_' + settings.quality];
-    if (settings.blur) {
-      image_settings.push('e_blur');
+    image_settings = ['c_limit', 'w_' + settings.width, 'h_' + settings.height, 'q_' + settings.quality];
+    if (settings.progressive) {
+      image_settings.push('fl_progressive');
     }
     path_elements[4] = image_settings.join(',');
     parser.pathname = path_elements.join('/');

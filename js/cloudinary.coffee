@@ -26,11 +26,10 @@ $.cloudinaryOptimize = (url, options) ->
 
   [width_limit, height_limit] = $.responsiveWindowImage()
   settings = 
-    crop: true
+    progressive: true
     width: width_limit
     height: height_limit
     quality: 70
-    blur: false
   $.extend settings, options
 
   path_elements = parser.pathname.split('/')
@@ -41,8 +40,8 @@ $.cloudinaryOptimize = (url, options) ->
   path_elements[5] = image_link.join('.')
 
   #change size and quality
-  image_settings = ['c_fill', 'w_' + settings.width, 'h_' + settings.height, 'q_' + settings.quality ]
-  image_settings.push( 'e_blur') if settings.blur
+  image_settings = ['c_limit', 'w_' + settings.width, 'h_' + settings.height, 'q_' + settings.quality]
+  image_settings.push('fl_progressive') if settings.progressive
   path_elements[4] = image_settings.join(',')
 
   #merge
